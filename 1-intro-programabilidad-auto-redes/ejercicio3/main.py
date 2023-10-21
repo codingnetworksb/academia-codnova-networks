@@ -19,7 +19,9 @@ class RouterData(BaseModel):
     vendor: str
 
 
-router_data_db = []
+router_data_db = [
+    {"hostname": "Router1", "ip_address": "192.168.56.101", "vendor": "Cisco"}
+]
 
 
 @app.post("/api/router/", response_model=RouterData)
