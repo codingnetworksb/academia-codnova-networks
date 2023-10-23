@@ -2,3 +2,6 @@ netmiko==4.2.0
 napalm==4.1.0
 fastapi==0.103.2
 uvicorn==0.23.2
+requests==2.31.0
+xmltodict==0.12.0
+PyYAML==5.3.1

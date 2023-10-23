@@ -19,9 +19,10 @@ class RouterData(BaseModel):
     vendor: str
 
 
-router_data_db = [
+initial_entry = RouterData.parse_obj(
     {"hostname": "Router1", "ip_address": "192.168.56.101", "vendor": "Cisco"}
-]
+)
+router_data_db = [initial_entry]
 
 
 @app.post("/api/router/", response_model=RouterData)
@@ -49,3 +50,15 @@ def verify_user(credentials: HTTPBasicCredentials = Depends(security)):
 @app.get("/api/protected-router/", response_model=List[RouterData])
 async def read_protected_router_data(user: dict = Depends(verify_user)):
     return router_data_db
+
+
+@app.delete("/api/router/{hostname}/")
+def delete_router_data(hostname: str, user: dict = Depends(verify_user)):
+    for router in router_data_db:
+        if router.hostname == hostname:
+            router_data_db.remove(router)
+            return router
+    raise HTTPException(
+        status_code=404,
+        detail=f"Router with hostname '{hostname}' not found",
+    )
