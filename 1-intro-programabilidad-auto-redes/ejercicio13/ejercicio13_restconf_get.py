@@ -1,6 +1,11 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import json
+from urllib3.exceptions import InsecureRequestWarning
+from urllib3 import disable_warnings
+
+# Elimina los Warnings que salen en consola
+disable_warnings(InsecureRequestWarning)
 
 # Datos de autenticación
 url = "https://192.168.56.11/restconf/data/ietf-interfaces:interfaces"
