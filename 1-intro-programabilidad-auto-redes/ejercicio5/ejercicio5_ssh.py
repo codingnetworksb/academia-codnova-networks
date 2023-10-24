@@ -4,8 +4,8 @@ from netmiko import ConnectHandler
 router = {
     "device_type": "cisco_xe",
     "ip": f"192.168.56.11",
-    "username": "devnet",
-    "password": "cisco",
+    "username": "codingnetworks",
+    "password": "Coding.Networks1",
 }
 
 # Configuration commands to be sent to each router
