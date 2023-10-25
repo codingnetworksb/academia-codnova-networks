@@ -1,0 +1,6 @@
+# variables.yml
+dispositivos:
+  dispositivo_cisco:
+    loopback_ip: 192.168.1.1
+  otro_dispositivo:
+    loopback_ip: 10.0.0.1

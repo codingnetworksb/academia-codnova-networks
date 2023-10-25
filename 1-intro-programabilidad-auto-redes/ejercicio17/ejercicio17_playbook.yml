@@ -1,0 +1,17 @@
+---
+- name: Configure Cisco Routers
+  hosts: cisco_routers
+  connection: network_cli
+  gather_facts: no  # We don't need to gather facts
+  tasks:
+    - name: Load variables
+      include_vars: variables.yml
+
+    - name: Generate router configurations from templates
+      template:
+       src: "templates/template_{{ inventory_hostname }}.j2"
+       dest: "/tmp/{{ inventory_hostname }}_config.txt"
+
+    - name: Push configurations to routers
+      ios_config:
+        src: "/tmp/{{ inventory_hostname }}_config.txt"

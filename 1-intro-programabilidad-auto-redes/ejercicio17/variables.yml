@@ -1,0 +1,10 @@
+---
+router1_interface: Loopback1
+router1_ip: 10.0.0.1
+router1_subnet_mask: 255.255.255.0
+router1_description: Interfaz de Gestion
+
+router2_interface: Loopback1
+router2_ip: 10.0.0.2
+router2_subnet_mask: 255.255.255.0
+router2_description: Interfaz de Gestion

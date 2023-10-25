@@ -1,0 +1,3 @@
+interface {{ router2_interface }}
+  ip address {{ router2_ip }} {{ router2_subnet_mask }}
+  description {{ router2_description }}
