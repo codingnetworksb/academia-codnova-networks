@@ -1,6 +1,6 @@
-# Academia Coding Networks
+# Academia Codnova Networks
 
-Bienvenido al repositorio de la Academia Coding Networks, donde encontrarás los códigos de ejercicios y proyectos de los cursos de la academia. Aquí podrás acceder a recursos valiosos que te ayudarán a aprender, practicar y dominar las habilidades necesarias para la administración de redes de manera eficiente y automatizada.
+Bienvenido al repositorio de la Academia Codnova Networks, donde encontrarás los códigos de ejercicios y proyectos de los cursos de la academia. Aquí podrás acceder a recursos valiosos que te ayudarán a aprender, practicar y dominar las habilidades necesarias para la administración de redes de manera eficiente y automatizada.
 
 ## Contenido
 
@@ -10,14 +10,14 @@ En este repositorio, encontrarás:
 
 - **Proyectos Prácticos**: Proyectos más extensos que te permitirán aplicar tus conocimientos en situaciones del mundo real.
 
-- **Recursos de Aprendizaje**: Enlaces a documentación, tutoriales y recursos útiles que complementan tu aprendizaje en la Academia Coding Networks.
+- **Recursos de Aprendizaje**: Enlaces a documentación, tutoriales y recursos útiles que complementan tu aprendizaje en la Academia Codnova Networks.
 
 ## Configuración de Ambiente y Librerías de Python
 Sigue estos pasos para instalar el ambiente de Python3 y las librerías que necesitas para correr los códigos de todos los ejercicios.
 
 1. Descagar el repositorio.
    ```bash
-   git clone https://github.com/codingnetworksb/academia-coding-networks.git
+   git clone https://github.com/codingnetworksb/academia-codnova-networks.git
    ```
 2. Crear ambiente virtual de Python y acceder
    ```bash
@@ -29,7 +29,7 @@ Sigue estos pasos para instalar el ambiente de Python3 y las librerías que nece
 3. Instalar requerimientos
 
    ```bash
-   pip3 install -r academia-coding-networks/requirements.txt
+   pip3 install -r academia-codnova-networks/requirements.txt
    ```
 
 ## Cursos
