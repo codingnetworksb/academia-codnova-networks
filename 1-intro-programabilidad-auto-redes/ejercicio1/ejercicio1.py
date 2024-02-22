@@ -27,10 +27,12 @@ for router in routers:
 
         # Send configuration commands
         output = net_connect.send_config_set(config_commands)
-        print(f"Configuring {router['ip']}:\n{output}\n")
+        print(f"Configurando router {router['ip']}:\n{output}\n")
 
         # Disconnect from the router
         net_connect.disconnect()
 
     except Exception as e:
-        print(f"Failed to configure {router['ip']} with error: {str(e)}")
+        print(
+            f"Error al Configurar Router {router['ip']}. El error presentado fue: {str(e)}"
+        )

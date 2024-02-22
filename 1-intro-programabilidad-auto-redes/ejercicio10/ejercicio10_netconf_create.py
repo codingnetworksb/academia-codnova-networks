@@ -3,7 +3,7 @@ from ncclient import manager
 # Datos de autenticación
 hostname = "192.168.56.11"
 username = "codingnetworks"
-password = "Coding.Networks1"
+password = "coding21"
 
 # Crear una conexión SSH NETCONF
 with manager.connect(
