@@ -2,8 +2,8 @@ from netmiko import ConnectHandler
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo ".env.academia"
-load_dotenv(".env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
+load_dotenv(dotenv_path="../.env.academia")
 
 # Define a list of routers with their connection parameters
 router = {

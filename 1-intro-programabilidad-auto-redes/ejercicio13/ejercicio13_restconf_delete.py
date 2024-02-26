@@ -3,8 +3,8 @@ from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo ".env.academia"
-load_dotenv(".env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
+load_dotenv(dotenv_path="../.env.academia")
 
 # Datos de autenticación
 url = "https://192.168.56.11/restconf/data/ietf-interfaces:interfaces/interface=Loopback155"
