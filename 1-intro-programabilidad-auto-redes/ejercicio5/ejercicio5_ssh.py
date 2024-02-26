@@ -1,11 +1,16 @@
 from netmiko import ConnectHandler
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
 
 # Define a list of routers with their connection parameters
 router = {
     "device_type": "cisco_xe",
-    "ip": f"192.168.56.11",
-    "username": "codingnetworks",
-    "password": "Coding.Networks1",
+    "ip": "192.168.56.11",
+    "username": os.getenv("CSR_USERNAME"),
+    "password": os.getenv("CSR_PASSWORD"),
 }
 
 # Configuration commands to be sent to each router

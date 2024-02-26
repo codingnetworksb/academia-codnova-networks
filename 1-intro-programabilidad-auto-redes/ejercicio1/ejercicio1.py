@@ -1,35 +1,40 @@
 from netmiko import ConnectHandler
+from dotenv import load_dotenv
+import os
 
-# Define a list of routers with their connection parameters
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
+
+# Definir una lista de routers con sus parámetros de conexión.
 routers = []
 for num in [5, 6, 11, 12]:
     routers.append(
         {
             "device_type": "cisco_ios",
             "ip": f"192.168.21.{num}",
-            "username": "codingnetworks",
-            "password": "coding21",
+            "username": os.getenv("CSR_USERNAME"),
+            "password": os.getenv("CSR_PASSWORD"),
         },
     )
 
-# Configuration commands to be sent to each router
+# Comandos de configuración que se enviarán a cada router
 config_commands = [
     "ip access-list extended SSH_MANAGEMENT",
     "permit ip 192.168.56.0 0.0.0.255 any",
     "permit ip 192.168.100.0 0.0.0.255 any",
 ]
 
-# Loop through each router and configure it
+# Recorre cada router y configúrelo
 for router in routers:
     try:
-        # Connect to the router
+        # Conectate al router
         net_connect = ConnectHandler(**router)
 
-        # Send configuration commands
+        # Envía los comandos de configuración
         output = net_connect.send_config_set(config_commands)
         print(f"Configurando router {router['ip']}:\n{output}\n")
 
-        # Disconnect from the router
+        # Desconectate del router
         net_connect.disconnect()
 
     except Exception as e:

@@ -2,13 +2,18 @@ from typing import List
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
 
 app = FastAPI()
 security = HTTPBasic()
 
 # Simulación de almacenamiento de usuarios permitidos (reemplaza con tu propio almacenamiento)
 allowed_users = {
-    "user1": {"password": "password1"},
+    os.getenv("CSR_USERNAME"): {"password": os.getenv("CSR_PASSWORD")},
     "user2": {"password": "password2"},
 }
 

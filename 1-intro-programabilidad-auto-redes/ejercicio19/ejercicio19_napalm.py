@@ -1,18 +1,23 @@
 import napalm
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
 
 # Define los detalles de conexión para una lista de dispositivos
 devices = [
     {
         "device_type": "iosxe",
         "hostname": "192.168.56.11",
-        "username": "codingnetworks",
-        "password": "Coding.Networks1",
+        "username": os.getenv("CSR_USERNAME"),
+        "password": os.getenv("CSR_PASSWORD"),
     },
     {
         "device_type": "iosxe",
         "hostname": "192.168.56.15",
-        "username": "codingnetworks",
-        "password": "Coding.Networks1",
+        "username": os.getenv("CSR_USERNAME"),
+        "password": os.getenv("CSR_PASSWORD"),
     },
 ]
 

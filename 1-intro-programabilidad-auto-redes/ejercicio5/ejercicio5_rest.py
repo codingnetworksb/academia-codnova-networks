@@ -12,7 +12,7 @@ url = "https://192.168.56.11:55443/api/v1/auth/token-services"
 headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Basic ZGV2bmV0OmNpc2Nv",
+    "Authorization": "Basic Y29kaW5nbmV0d29ya3M6Y29kaW5nMjE=",
 }
 
 response = requests.request("POST", url, headers=headers, data={}, verify=False)

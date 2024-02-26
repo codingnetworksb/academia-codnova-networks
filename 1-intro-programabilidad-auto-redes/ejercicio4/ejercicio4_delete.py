@@ -12,7 +12,7 @@ url = f"http://192.168.56.10:8000/api/router/{hostname}"
 payload = {}
 
 #  Se especifica el tipo de datos a enviar en el Payload(JSON)
-headers = {"Authorization": "Basic dXNlcjE6cGFzc3dvcmQx"}
+headers = {"Authorization": "Basic Y29kaW5nbmV0d29ya3M6Y29kaW5nMjE="}
 
 # Hacemos uso del método request() para ejecutar la llamada al API
 response = requests.request("DELETE", url, headers=headers, data=payload)

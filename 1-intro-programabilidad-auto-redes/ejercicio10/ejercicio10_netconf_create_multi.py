@@ -1,9 +1,14 @@
 from ncclient import manager
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
 
 # Datos de autenticación
-devices = ["192.168.56.11", "192.168.56.15"]
-username = "codingnetworks"
-password = "Coding.Networks1"
+devices = ["192.168.56.11"]
+username = os.getenv("CSR_USERNAME")
+password = os.getenv("CSR_PASSWORD")
 
 multi_loopbacks = ""
 for num in range(100, 130):

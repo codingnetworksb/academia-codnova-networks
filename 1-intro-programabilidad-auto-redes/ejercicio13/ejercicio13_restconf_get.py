@@ -3,14 +3,19 @@ from requests.auth import HTTPBasicAuth
 import json
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
 
 # Elimina los Warnings que salen en consola
 disable_warnings(InsecureRequestWarning)
 
 # Datos de autenticación
 url = "https://192.168.56.11/restconf/data/ietf-interfaces:interfaces"
-username = "codingnetworks"
-password = "Coding.Networks1"
+username = os.getenv("CSR_USERNAME")
+password = os.getenv("CSR_PASSWORD")
 
 # Encabezados HTTP
 headers = {

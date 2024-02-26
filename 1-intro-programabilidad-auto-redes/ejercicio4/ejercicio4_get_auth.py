@@ -9,7 +9,7 @@ url = "http://192.168.56.10:8000/api/protected-router/"
 payload = {}
 
 # Definimos el header de autorización
-headers = {"Authorization": "Basic dXNlcjE6cGFzc3dvcmQx"}
+headers = {"Authorization": "Basic Y29kaW5nbmV0d29ya3M6Y29kaW5nMjE="}
 
 # Hacemos uso del método request() para ejecutar la llamada al API
 response = requests.request("GET", url, headers=headers, data=payload)

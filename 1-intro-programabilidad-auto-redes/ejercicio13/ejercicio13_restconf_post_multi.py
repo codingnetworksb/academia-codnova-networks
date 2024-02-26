@@ -2,14 +2,19 @@ import requests
 from requests.auth import HTTPBasicAuth
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de ambiente desde el archivo ".env.academia"
+load_dotenv(".env.academia")
+
+# Datos de autenticación
+devices = ["192.168.56.11"]
+username = os.getenv("CSR_USERNAME")
+password = os.getenv("CSR_PASSWORD")
 
 # Elimina los Warnings que salen en consola
 disable_warnings(InsecureRequestWarning)
-
-# Datos de autenticación
-devices = ["192.168.56.11", "192.168.56.15"]
-username = "codingnetworks"
-password = "Coding.Networks1"
 
 # Encabezados HTTP
 headers = {
