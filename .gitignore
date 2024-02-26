@@ -1,2 +1,26 @@
-.vscode/
 venv_academia/
+
+# Dependencias / Módulos
+/node_modules
+
+# Archivos de construcción temporales
+/dist
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Archivos específicos de sistemas operativos
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Archivos de entorno
+.env
+.env.local 
+
+# Archivos de pruebas
+/coverage/
+/tests/__snapshots__/

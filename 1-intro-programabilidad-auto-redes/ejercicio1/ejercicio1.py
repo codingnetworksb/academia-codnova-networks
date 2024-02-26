@@ -2,13 +2,13 @@ from netmiko import ConnectHandler
 
 # Define a list of routers with their connection parameters
 routers = []
-for num in range(1, 20):
+for num in [5, 6, 11, 12]:
     routers.append(
         {
             "device_type": "cisco_ios",
             "ip": f"192.168.21.{num}",
             "username": "codingnetworks",
-            "password": "Coding.Networks1",
+            "password": "coding21",
         },
     )
 
