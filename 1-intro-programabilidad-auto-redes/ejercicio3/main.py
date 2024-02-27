@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 # Cargar las variables de ambiente desde el archivo dotenv_path="../../.env.academia"
-load_dotenv(dotenv_path="../../.env.academia")
+load_dotenv(dotenv_path=".env.academia")
 
 app = FastAPI()
 security = HTTPBasic()

@@ -7,8 +7,11 @@ WORKDIR /app
 # Copia el archivo main.py al contenedor
 COPY main.py .
 
+# Copia el archivo .env.academia al contenedor
+COPY .env.academia .
+
 # Instala Uvicorn para ejecutar la aplicación FastAPI
-RUN pip install uvicorn fastapi 
+RUN pip install uvicorn fastapi python-dotenv
 
 # Expone el puerto 8000
 EXPOSE 8000
