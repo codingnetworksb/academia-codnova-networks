@@ -5,8 +5,8 @@ from urllib3 import disable_warnings
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
-load_dotenv(dotenv_path="../.env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../../.env.academia"
+load_dotenv(dotenv_path="../../.env.academia")
 
 # Datos de autenticación
 devices = ["192.168.56.11"]

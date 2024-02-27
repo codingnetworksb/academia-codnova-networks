@@ -2,8 +2,8 @@ import napalm
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
-load_dotenv(dotenv_path="../.env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../../.env.academia"
+load_dotenv(dotenv_path="../../.env.academia")
 
 # Define los detalles de conexión para una lista de dispositivos
 devices = [

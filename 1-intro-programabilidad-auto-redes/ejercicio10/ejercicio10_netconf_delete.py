@@ -2,8 +2,8 @@ from ncclient import manager
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
-load_dotenv(dotenv_path="../.env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../../.env.academia"
+load_dotenv(dotenv_path="../../.env.academia")
 
 # Datos de autenticación
 hostname = "192.168.56.11"

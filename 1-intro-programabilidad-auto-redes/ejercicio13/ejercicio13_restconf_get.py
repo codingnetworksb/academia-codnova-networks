@@ -6,8 +6,8 @@ from urllib3 import disable_warnings
 from dotenv import load_dotenv
 import os
 
-# Cargar las variables de ambiente desde el archivo dotenv_path="../.env.academia"
-load_dotenv(dotenv_path="../.env.academia")
+# Cargar las variables de ambiente desde el archivo dotenv_path="../../.env.academia"
+load_dotenv(dotenv_path="../../.env.academia")
 
 # Elimina los Warnings que salen en consola
 disable_warnings(InsecureRequestWarning)
