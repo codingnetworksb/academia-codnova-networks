@@ -10,7 +10,7 @@ routers = []
 for num in [5, 6, 11, 12]:
     routers.append(
         {
-            "device_type": "cisco_ios",
+            "device_type": "cisco_xe",
             "ip": f"192.168.21.{num}",
             "username": os.getenv("CSR_USERNAME"),
             "password": os.getenv("CSR_PASSWORD"),
