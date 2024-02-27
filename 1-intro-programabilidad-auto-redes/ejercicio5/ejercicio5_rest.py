@@ -2,6 +2,12 @@ import requests
 import json
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+from ssladapter import SSLAdapter
+
+# Workaround para forzar uso de TLS version 1.0 en requests
+# CSR1000V solo soport TLS version 1.0
+requests_tlsv1 = requests.Session()
+requests_tlsv1.mount('https://', SSLAdapter())
 
 # Elimina los Warnings que salen en consola
 disable_warnings(InsecureRequestWarning)
@@ -15,7 +21,7 @@ headers = {
     "Authorization": "Basic Y29kaW5nbmV0d29ya3M6Y29kaW5nMjE=",
 }
 
-response = requests.request("POST", url, headers=headers, data={}, verify=False)
+response = requests_tlsv1.request("POST", url, headers=headers, data={}, verify=False)
 
 token_data = response.json()
 
@@ -28,7 +34,7 @@ headers = {
     "X-auth-token": token_data["token-id"],
 }
 
-response = requests.get(url, headers=headers, verify=False)
+response = requests_tlsv1.get(url, headers=headers, verify=False)
 
 # Comprobamos el código de estado HTTP
 if response.status_code >= 200 and response.status_code < 300:
