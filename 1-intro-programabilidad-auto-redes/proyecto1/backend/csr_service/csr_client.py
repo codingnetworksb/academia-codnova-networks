@@ -1,6 +1,10 @@
 import requests
-import json
-import ssl
+from ssladapter import SSLAdapter
+
+# Workaround para forzar uso de TLS version 1.0 en requests
+# CSR1000V solo soport TLS version 1.0
+requests_tlsv1 = requests.Session()
+requests_tlsv1.mount("https://", SSLAdapter())
 
 
 class CSRClient:
@@ -23,7 +27,7 @@ class CSRClient:
             "Authorization": "Basic Y29kaW5nbmV0d29ya3M6Y29kaW5nMjE=",
         }
 
-        response = requests.request(
+        response = requests_tlsv1.request(
             "POST", url, headers=headers, data=payload, verify=False
         )
 
@@ -39,8 +43,7 @@ class CSRClient:
             "Content-Type": "application/json",
             "X-auth-token": self.token,
         }
-        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-        response = requests.get(
+        response = requests_tlsv1.get(
             f"{self.base_url}/interfaces", headers=headers, verify=False
         )
         if response.status_code == 200:

@@ -24,3 +24,6 @@ Thumbs.db # Windows
 # Archivos de pruebas
 /coverage/
 /tests/__snapshots__/
+
+# Cache
+__pycache__/

@@ -37,7 +37,7 @@ for router in yaml_dict["router"]:
         router["ip"] = "192.168.56.111"
 
 # Convertir el diccionario en una cadena XML
-json_string = yaml.dump(yaml_dict)
+yaml_string = yaml.dump(yaml_dict)
 
-# Imprimir la cadena json resultante
-print(json_string)
+# Imprimir la cadena yaml resultante
+print(yaml_string)
