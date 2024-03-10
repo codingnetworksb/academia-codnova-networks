@@ -6,7 +6,7 @@ import os
 load_dotenv(dotenv_path="../../.env.academia")
 
 # Datos de autenticación
-devices = ["192.168.56.11"]
+devices = ["192.168.56.11", "192.168.56.12"]
 username = os.getenv("CSR_USERNAME")
 password = os.getenv("CSR_PASSWORD")
 
