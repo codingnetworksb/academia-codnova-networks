@@ -1,8 +1,0 @@
----
-- hosts: cisco_routers  # Replace with your device group name
-  gather_facts: yes
-
-  tasks:
-    - name: Display gathered facts
-      debug:
-        var: ansible_facts

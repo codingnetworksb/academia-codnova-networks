@@ -1,17 +1,55 @@
 ---
-- name: Configure Cisco Routers
-  hosts: cisco_routers
-  connection: network_cli
-  gather_facts: no  # We don't need to gather facts
+- name: Colectar las variables para el Playbook
+  hosts: all, localhost
+  gather_facts: no
+  vars_files:
+    - ./vars_vault.yml
   tasks:
-    - name: Load variables
-      include_vars: variables.yml
+   - name: Obteniendo la Fecha actual
+     local_action: command date +%Y%m%d
+     register: timedate
+  
+   - name: Creando Variable que Almacene la Fecha Actual
+     set_fact: 
+      timestamp: "{{ timedate.stdout }}"
+      cacheable: yes
+      
+- name: Generar de Backups de la Configuración
+  hosts: cisco_ios_routers
+  gather_facts: no
+  connection: network_cli
+  vars_files:
+    - ./vars_vault.yml
+  tasks:
 
-    - name: Generate router configurations from templates
-      template:
-       src: "templates/template_{{ inventory_hostname }}.j2"
-       dest: "/tmp/{{ inventory_hostname }}_config.txt"
+   - name: Colectando Backups de los Routers y Almacenarlos en Archivos con sus Nombres
+     ios_config:
+      backup: yes
+      backup_options:
+        filename: "{{ inventory_hostname }}_{{ timestamp }}.txt"
+        dir_path: /tmp/backups_cisco_{{ timestamp }}/
+     ignore_errors: yes
 
-    - name: Push configurations to routers
-      ios_config:
-        src: "/tmp/{{ inventory_hostname }}_config.txt"
+- name: Crear un archivo Zip del directorio que tiene los Backups
+  hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: Creando archivo Zip
+     connection: local
+     archive:
+        path:
+          - /tmp/backups_cisco_{{ timestamp }}
+        dest: /tmp/bkps_cisco_{{ timestamp }}.zip
+        format: zip
+      
+- name: Copiar Archivo Zip a Servidor SFTP
+  hosts: SFTP-S
+  gather_facts: no
+  vars_files:
+    - ./vars_vault.yml
+  tasks:      
+   - name: Copiando archivos a Servidor SFTP
+     copy:
+      src: "/tmp/bkps_cisco_{{ timestamp }}.zip"
+      dest: "/home/codingnetworks/bkps_cisco_{{ timestamp }}.zip"
+      

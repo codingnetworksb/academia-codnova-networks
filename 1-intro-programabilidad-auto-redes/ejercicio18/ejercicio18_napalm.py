@@ -1,4 +1,4 @@
-from napalm import get_network_driver
+import napalm
 from dotenv import load_dotenv
 import os
 
@@ -24,7 +24,7 @@ devices = [
 # Itera a través de la lista de dispositivos
 for device_info in devices:
     # Crea una instancia de NAPALM para el dispositivo
-    driver = get_network_driver(device_info["device_type"])
+    driver = napalm.get_network_driver(device_info["device_type"])
     device = driver(
         hostname=device_info["hostname"],
         username=device_info["username"],
@@ -35,16 +35,18 @@ for device_info in devices:
         # Conecta al dispositivo
         device.open()
 
-        # Configurar la interfaz Loopback
-        loopback_config = [
-            "interface Loopback122",
-            "description Interfaz Loopback con NAPALM",
-            "ip address 192.168.122.1 255.255.255.255",
-        ]
+        # Recupera información de las interfaces
+        interfaces = device.get_interfaces()
 
-        # Aplicar la configuración
-        device.load_merge_candidate(config="\n".join(loopback_config))
-        device.commit_config()
+        # Imprime las interfaces que están arriba junto con su descripción
+        print(
+            f"Información de interfaces en {device_info['hostname']} ({device_info['device_type']}):"
+        )
+        for interface, details in interfaces.items():
+            if details.get("is_up"):
+                print(
+                    f"Interfaz: {interface}, Descripción: {details.get('description', 'Sin descripción')}"
+                )
 
     except Exception as e:
         print(f"Error al conectar con {device_info['hostname']}: {str(e)}")

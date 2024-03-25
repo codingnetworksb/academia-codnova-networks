@@ -1,19 +1,17 @@
 ---
-- name: Verificar y corregir políticas de seguridad en routers Cisco
+- name: Configurar Routers Cisco
   hosts: cisco_routers
+  connection: network_cli
   gather_facts: no
-  vars:
-    admin_username: admin
-    admin_password: password123
-
+  vars_files:
+    - variables.yml
+    - vars_vault.yml
   tasks:
-    - name: Check if user "admin" exists
-      cisco.ios.ios_command:
-        commands: show running-config | i username
-      register: user_exists_output
+    - name: Generando la configuración del router en base la Plantilla
+      template:
+       src: "templates/template_{{ inventory_hostname }}.j2"
+       dest: "/tmp/{{ inventory_hostname }}_config.txt"
 
-    - name: Create user "admin" if it doesn't exist
-      cisco.ios.ios_config:
-        lines:
-          - username {{ admin_username }} secret {{ admin_password }}
-      when: "'admin' not in user_exists_output.stdout_lines"
+    - name: Empujar la configuración hacia el Router
+      ios_config:
+        src: "/tmp/{{ inventory_hostname }}_config.txt"
