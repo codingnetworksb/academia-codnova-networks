@@ -1,0 +1,13 @@
+---
+- hosts: cisco_routers
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Enable OSPF
+      ios_config:
+        lines:
+          - router ospf {{ ospf_process_id }}
+          - network {{ item.network }} {{ item.wildcard }} area {{ area_id }}
+      with_items:
+        - { network: '172.16.21.0', wildcard: '0.0.0.1', area_id: 0 } 

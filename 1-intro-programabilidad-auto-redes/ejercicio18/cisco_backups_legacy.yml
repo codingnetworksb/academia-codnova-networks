@@ -1,0 +1,55 @@
+---
+- name: Getting Variables set
+  hosts: all, localhost
+  gather_facts: no
+  vars_files:
+    - ./vars_vault.yml
+  tasks:
+   - name: Getting Current Date
+     local_action: command date +%Y%m%d
+     register: timedate
+  
+   - name: Setting Variable with Date
+     set_fact: 
+      timestamp: "{{ timedate.stdout }}"
+      cacheable: yes
+      
+- name: Backups Others Legacy Routers Play
+  hosts: cisco_ios_routers
+  gather_facts: no
+  connection: network_cli
+  vars_files:
+    - ./vars_vault.yml
+  tasks:
+
+   - name: Getting Backups from Legacy Routers and Switches
+     ios_config:
+      backup: yes
+      backup_options:
+        filename: "{{ inventory_hostname }}_{{ timestamp }}.txt"
+        dir_path: /tmp/backups_cisco_{{ timestamp }}/
+     ignore_errors: yes
+
+- name: Create Zip of Backup Cisco Directory Play
+  hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: Creating Zip of Backup Cisco Directory
+     connection: local
+     archive:
+        path:
+          - /tmp/backups_cisco_{{ timestamp }}
+        dest: /tmp/bkps_cisco_{{ timestamp }}.zip
+        format: zip
+      
+- name: Copy Files to SFTP Play
+  hosts: SFTP-S
+  gather_facts: no
+  vars_files:
+    - ./vars_vault.yml
+  tasks:      
+   - name: Copying files to SFTP Server
+     copy:
+      src: "/tmp/bkps_cisco_{{ timestamp }}.zip"
+      dest: "/home/codingnetworks/bkps_cisco_{{ timestamp }}.zip"
+      

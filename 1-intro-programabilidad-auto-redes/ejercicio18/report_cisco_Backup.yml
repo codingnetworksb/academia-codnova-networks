@@ -1,0 +1,28 @@
+---
+- name: Getting Cisco Backup Last Report
+  hosts: localhost
+  vars_files:
+    - ./vars_vault.yml
+  tasks:
+
+   - name: Getting Backup Report Logs Output
+     local_action: "shell tail -100 /tmp/ansible.log | awk '/RECAP/,0'"
+     register: last_backup_report
+     no_log: true
+
+   - name: Copy the Output to a Local File
+     copy:
+      content: "{{ last_backup_report.stdout }}"
+      dest: "/tmp/last_backup_report.txt"
+     no_log: true
+
+- name: Copy Files to SFTP Play
+  hosts: SFTP-S
+  vars_files:
+    - ./vars_vault.yml
+  tasks:      
+   - name: Copying files to SFTP Server
+     copy:
+      src: "/tmp/last_backup_report.txt"
+      dest: "/home/codingnetworks/last_backup_report.txt"
+     no_log: true

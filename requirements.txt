@@ -8,3 +8,5 @@ PyYAML
 ncclient
 python-dotenv
 ncclient
+ansible
+ansible-pylibssh

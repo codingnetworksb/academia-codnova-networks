@@ -15,7 +15,7 @@ devices = [
     },
     {
         "device_type": "iosxe",
-        "hostname": "192.168.56.15",
+        "hostname": "192.168.56.12",
         "username": os.getenv("CSR_USERNAME"),
         "password": os.getenv("CSR_PASSWORD"),
     },
