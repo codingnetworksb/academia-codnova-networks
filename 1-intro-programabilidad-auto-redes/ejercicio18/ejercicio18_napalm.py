@@ -8,13 +8,13 @@ load_dotenv(dotenv_path="../../.env.academia")
 # Define los detalles de conexión para una lista de dispositivos
 devices = [
     {
-        "device_type": "iosxe",
+        "device_type": "ios",
         "hostname": "192.168.56.11",
         "username": os.getenv("CSR_USERNAME"),
         "password": os.getenv("CSR_PASSWORD"),
     },
     {
-        "device_type": "iosxe",
+        "device_type": "ios",
         "hostname": "192.168.56.12",
         "username": os.getenv("CSR_USERNAME"),
         "password": os.getenv("CSR_PASSWORD"),

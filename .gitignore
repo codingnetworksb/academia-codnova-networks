@@ -2,6 +2,7 @@ venv_academia/
 
 # Dependencias / Módulos
 /node_modules
+node_modules/ 
 
 # Archivos de construcción temporales
 /dist

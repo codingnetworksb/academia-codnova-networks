@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  netconf:
+    build: ./backend/netconf_services
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+  restconf:
+    build: ./backend/restconf_services
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+  napalm:
+    build: ./backend/napalm_services
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+  netmiko:
+    build: ./backend/netmiko_services
+    ports:
+      - "8003:8003"
+    env_file:
+      - .env
+
